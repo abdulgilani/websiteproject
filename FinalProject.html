@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <meta charset="utf-8">
+        <title>User Login</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="Login.css">
+	</head>
+    <body>
+	
+<div class="container">
+	  <form>
+		  	<h1 style="color:antiquewhite; font-family:'Californian FB', serif; ">Books &amp; Scribes</h1>
+				<label for="email">Email Address</label>
+    			<input type="email" id="email" placeholder="Email">
+				 
+    			<label for="password">Password</label>
+    			<input type="password" id="password" placeholder="Password">
+				
+		  	
+				<button id="login">Login</button>
+     			<button id="reset_password">Forgot Password?</button>
+    
+  			</form>
+		</div>
+     
+    <!--  core Firebase JS SDK is always required and must be listed first  -->
+    <script type="module">
+        //Import the funciton you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase Products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"
+
+        //Your web apps's Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyCfQvCdVv8A-kH6im-EL6KmgPyTUabtJNk",
+        authDomain: "userlogin-22b78.firebaseapp.com",
+        projectId: "userlogin-22b78",
+        storageBucket: "userlogin-22b78.appspot.com",
+        messagingSenderId: "836324407044",
+        appId: "1:836324407044:web:5c3fd0cefb370c7b154251",
+    };
+    //INITIALIZE FIREBASE
+    const app = initializeApp(firebaseConfig) ;
+
+    //INITIALIZE VARIBALES
+    const auth = getAuth(app);
+
+    //Set up login function
+    document.getElementById('login').onclick = function(){
+        //Get login info
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        //also validate
+        if(validate_email(email) == false || validate_password(password) == false)
+        {
+            alert("Email or password is invalid");
+            return; //Do not continue the code
+        }
+
+        //Move on with authorization
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            //Logged in
+            const user = userCredential.user;
+
+            const dt = new Data();
+
+            update(ref(databse, 'users/' + user.uid), {
+
+            })
+            
+            alert('User logged in');
+            
+            window.location.href = 'index.html';
+        })
+            .catch((error) => {
+            //Firebase will use this to alert with errors
+            var error_code = errorcode;
+            var error_message = error.message;
+
+            alert(error_message);
+        })
+    }
+
+            // Get's the Password Reset Page if user forgot the password
+            document.getElementById('reset_password').onclick = function(){
+                window.location.href = 'Assignment 2--Pasword Reset.html';
+            }
+
+            // Validate email
+            function validate_email(email){
+                var expression = /^[^@]+@\w+(\.\w+)+\w$/
+                if(expression.test(email) == true){
+                    // Email is good
+                    return true;
+                }
+                else{
+                    // Email is invalid
+                    return false;
+                }
+            }
+
+            // Validate password
+            function validate_password(password){
+                // Firebase only accepts password greater than or equal to six
+                if (password < 6)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+    </script>
+    </body>
+</html>
+    

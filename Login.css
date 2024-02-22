@@ -1,0 +1,71 @@
+body {
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0; /* Remove default body margin */
+  font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+
+
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #485c64;
+  padding: 20px;
+  width: 300px; /* Set a fixed width for the container */
+  margin: auto; /* Center the container horizontally */
+}
+
+form {
+	font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+  display: flex;
+  flex-direction: column; /* Stack the form items vertically */
+}
+
+label {
+  color:aliceblue;
+  margin-bottom: 8px; /* Add some spacing between labels and input fields */
+}
+
+
+input,
+button {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+	
+}
+
+button {
+  background-color: #78a9ba;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #9DB1B8;}
